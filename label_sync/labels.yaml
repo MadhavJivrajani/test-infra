@@ -258,12 +258,6 @@ default:
       prowPlugin: label
       addedBy: anyone
     - color: c7def8
-      description: Categorizes issue or PR as related to design.
-      name: kind/design
-      target: both
-      prowPlugin: label
-      addedBy: anyone
-    - color: c7def8
       description: Categorizes issue or PR as related to documentation.
       name: kind/documentation
       previously:
@@ -1613,6 +1607,14 @@ repos:
         target: issues
         prowPlugin: label
         addedBy: anyone
+  kubernetes/kubeadm:
+    labels:
+      - color: c7def8
+        description: Categorizes issue or PR as related to design.
+        name: kind/design
+        target: both
+        prowPlugin: label
+        addedBy: anyone
   kubernetes-sigs/cluster-api:
     labels:
       - color: c7def8
@@ -1695,6 +1697,12 @@ repos:
       - color: 0052cc
         description: Issues or PRs related to operator
         name: area/operator
+        target: both
+        prowPlugin: label
+        addedBy: anyone
+      - color: c7def8
+        description: Categorizes issue or PR as related to design.
+        name: kind/design
         target: both
         prowPlugin: label
         addedBy: anyone
@@ -1894,3 +1902,11 @@ repos:
         target: both
         addedBy: anyone
         prowPlugin: label
+  kubernetes-sigs/controller-runtime:
+    labels:
+      - color: c7def8
+        description: Categorizes issue or PR as related to design.
+        name: kind/design
+        target: both
+        prowPlugin: label
+        addedBy: anyone
