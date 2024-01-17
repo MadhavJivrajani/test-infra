@@ -3532,3 +3532,20 @@ func TestIsAppInstalled(t *testing.T) {
 		})
 	}
 }
+
+func TestReturnCodeZero(t *testing.T) {
+	ts := httptest.NewTLSServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		http.Error(w, `{"message":"Unable to retry this workflow run because it was created over a month ago","documentation_url":"https://docs.github.com/rest/actions/workflow-runs#re-run-failed-jobs-from-a-workflow-run"}`, http.StatusForbidden)
+	}))
+	defer ts.Close()
+
+	c := getClient(ts.URL)
+
+	code, _, err := c.requestRawWithContext(context.TODO(), &request{
+		method:    http.MethodPost,
+		path:      "/repos/kubernetes/utils/actions/runs/5577562429/rerun-failed-jobs",
+		exitCodes: []int{200},
+	})
+
+	t.Fatal("Code:", code, "err:", err)
+}
